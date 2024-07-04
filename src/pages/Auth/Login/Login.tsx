@@ -1,12 +1,22 @@
 import React from 'react'
 import auth from 'src/apis/auth'
-
+import { useMutation } from '@tanstack/react-query'
 import { Formik } from 'formik'
 import { loginSchema } from 'src/untils/formSchema'
 import { TextField, Button, Box, Select, MenuItem, FormControl, InputLabel, FormHelperText } from '@mui/material'
+import { useNavigate } from 'react-router-dom'
 export default function Login() {
-  const handleSubmit = async (data: { username: string; password: string; company_id: string }) => {
-    await auth.login(data)
+  const navigate = useNavigate()
+  const loginMutation = useMutation({
+    mutationFn: (body: { username: string; password: string; company_id: string }) => auth.login(body)
+  })
+  const handleSubmit = (body: { username: string; password: string; company_id: string }) => {
+    loginMutation.mutate(body, {
+      onSuccess: (data) => {
+        // console.log(data)
+        navigate('/employee')
+      }
+    })
   }
   return (
     <div>
@@ -17,7 +27,7 @@ export default function Login() {
           validateOnBlur={false}
           validateOnChange={false}
           onSubmit={(data) => {
-            console.log(data)
+            // console.log(data)
             handleSubmit(data)
           }}
         >
