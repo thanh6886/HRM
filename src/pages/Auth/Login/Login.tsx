@@ -56,7 +56,7 @@ export default function Login() {
                   {touched.company_id && errors.company_id && <FormHelperText>{errors.company_id}</FormHelperText>}
                 </FormControl>
               </Box>
-              <Button type='submit' variant='contained' color='primary'>
+              <Button type='submit' variant='contained' color='primary' className=''>
                 Submit
               </Button>
             </form>
