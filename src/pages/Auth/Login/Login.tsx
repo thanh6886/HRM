@@ -5,7 +5,11 @@ import { Formik } from 'formik'
 import { loginSchema } from 'src/untils/formSchema'
 import { TextField, Button, Box, Select, MenuItem, FormControl, InputLabel, FormHelperText } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLogin } from 'src/redux/Reducer/userReducer'
 export default function Login() {
+  const user = useSelector((state: any) => state.auth.value)
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const loginMutation = useMutation({
     mutationFn: (body: { username: string; password: string; company_id: string }) => auth.login(body)
@@ -14,10 +18,12 @@ export default function Login() {
     loginMutation.mutate(body, {
       onSuccess: (data) => {
         // console.log(data)
-        navigate('/employee')
+        dispatch(setLogin())
+        // navigate('/employee')
       }
     })
   }
+  console.log(user)
   return (
     <div>
       <Box display='flex' justifyContent='center' alignItems='center' height='100vh'>
