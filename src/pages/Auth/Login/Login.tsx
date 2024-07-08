@@ -17,15 +17,19 @@ export default function Login() {
   const handleSubmit = (body: { username: string; password: string; company_id: string }) => {
     loginMutation.mutate(body, {
       onSuccess: (data) => {
-        // console.log(data)
+        console.log(data)
         dispatch(setLogin())
         // navigate('/employee')
       }
     })
   }
   console.log(user)
+  const Logout = async () => {
+    await auth.logout()
+  }
   return (
     <div>
+      <button onClick={Logout}>logout</button>
       <Box display='flex' justifyContent='center' alignItems='center' height='100vh'>
         <Formik
           initialValues={{ username: '', password: '', company_id: '' }}
