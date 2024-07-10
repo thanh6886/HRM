@@ -1,0 +1,20 @@
+.wrap-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box_icon {
+  display: grid;
+  justify-content: center;
+}
+.box_icon img {
+  justify-self: center;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+}
+.headerLogin h2 {
+  display: flex;
+  justify-content: center;
+  font-size: xx-large;
+}
